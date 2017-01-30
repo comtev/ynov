@@ -39,14 +39,14 @@ class nginx {
 				require    => Package['php5-fpm'],
 		}
 
-		file_line{"disable pathinfo":
+		file_line{ "disable pathinfo":
 				path       => "/etc/php5/fpm/php.ini",
 				line       => 'cgi.fix_pathinfo=0',
 				require    => Package['php5-fpm'],
 				notify     => Service['php5-fpm'],
 		}
 
-		file_line{"make sure pathinfo is disabled":
+		file_line{ "make sure pathinfo is disabled":
 				path       => "/etc/php5/fpm/php.ini",
 				line       => 'cgi.fix_pathinfo=1',
 				ensure     => 'absent',
